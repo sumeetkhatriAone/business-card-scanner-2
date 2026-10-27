@@ -1,0 +1,238 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 16px;
+  color: #1a1a1a;
+}
+
+.hidden { display: none !important; }
+
+/* ===== PIN SCREEN ===== */
+.pin-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.pin-box {
+  background: #fff;
+  padding: 30px 24px;
+  border-radius: 16px;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.pin-box h2 { font-size: 1.4rem; margin-bottom: 8px; }
+.pin-box p { color: #666; margin-bottom: 20px; font-size: 0.95rem; }
+
+#pinInput {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  outline: none;
+}
+#pinInput:focus { border-color: #667eea; }
+
+.error-text { color: #e74c3c; font-size: 0.85rem; margin-top: 10px; }
+
+/* ===== MAIN APP ===== */
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 { font-size: 1.5rem; }
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin: 6px 0 20px;
+}
+
+/* Settings Panel */
+.settings-panel {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.settings-panel h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.settings-panel label { font-size: 0.85rem; font-weight: 600; color: #444; display: block; margin-bottom: 6px; }
+.settings-panel textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  resize: vertical;
+}
+
+.settings-actions { display: flex; gap: 10px; }
+.settings-actions .btn { flex: 1; }
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn.primary { background: #25D366; color: #fff; }
+.btn.secondary { background: #f0f0f0; color: #1a1a1a; }
+.btn.danger { background: #ff4d4f; color: #fff; }
+.btn.ghost { background: transparent; color: #888; border: 1px dashed #ccc; font-size: 0.85rem; padding: 8px; }
+
+/* ===== CAMERA VIEW ===== */
+#cameraContainer {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  margin-top: 12px;
+}
+
+#video {
+  width: 100%;
+  display: block;
+  max-height: 60vh;
+  object-fit: cover;
+}
+
+.camera-actions {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.circle-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#preview {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+  object-fit: contain;
+  background: #000;
+}
+
+.status {
+  margin-top: 12px;
+  padding: 12px;
+  background: #eef4ff;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #2a4d8f;
+}
+
+/* Results */
+.result h2 { font-size: 1.1rem; margin: 16px 0 12px; }
+.numbers { display: flex; flex-direction: column; gap: 10px; }
+
+.number-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.number-card:hover { background: #e7f8ef; border-color: #25D366; }
+.number-card.selected { background: #25D366; border-color: #128C7E; color: #fff; }
+.number-card .wa-icon { font-size: 1.3rem; }
+
+.no-numbers {
+  padding: 16px;
+  text-align: center;
+  color: #c0392b;
+  background: #fdecea;
+  border-radius: 10px;
+}
+
+.raw-text { margin-top: 20px; }
+.raw-text h3 { font-size: 0.9rem; color: #666; margin-bottom: 6px; cursor: pointer; }
+.raw-text pre {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.debug-img { width: 100%; margin-top: 12px; border-radius: 10px; border: 2px solid #667eea; }
