@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Business Card Scanner</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+  <!-- ================= PIN SCREEN ================= -->
+  <div id="pinScreen" class="pin-screen">
+    <div class="pin-box">
+      <h2>🔒 App Locked</h2>
+      <p>Enter PIN to continue</p>
+      <input type="password" id="pinInput" inputmode="numeric" maxlength="4" placeholder="••••" />
+      <button id="pinSubmit" class="btn primary">Unlock</button>
+      <p id="pinError" class="error-text hidden">Incorrect PIN</p>
+    </div>
+  </div>
+
+  <!-- ================= MAIN APP ================= -->
+  <div class="app hidden" id="mainApp">
+    <header>
+      <div class="header-top">
+        <h1>📇 Card Scanner</h1>
+        <button id="settingsBtn" class="icon-btn" title="Settings">⚙️</button>
+      </div>
+      <p class="subtitle">Scan → Tap Number → Open WhatsApp</p>
+    </header>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel hidden">
+      <h3>Master Settings</h3>
+      <label>WhatsApp Predefined Message</label>
+      <textarea id="messageInput" rows="3"></textarea>
+      <div class="settings-actions">
+        <button id="saveSettings" class="btn primary" style="padding: 10px;">Save</button>
+        <button id="closeSettings" class="btn secondary" style="padding: 10px;">Close</button>
+      </div>
+    </div>
+
+    <section class="controls" id="mainControls">
+      <button id="startCameraBtn" class="btn primary">📷 Scan with Camera</button>
+      <label for="fileInput" class="btn secondary">
+        📁 Upload Image
+        <input type="file" id="fileInput" accept="image/*" hidden />
+      </label>
+      <button id="debugBtn" class="btn ghost" hidden>🐞 Show Debug Info</button>
+    </section>
+
+    <!-- Camera View -->
+    <div id="cameraContainer" class="hidden">
+      <video id="video" playsinline autoplay muted></video>
+      <div class="camera-actions">
+        <button id="cancelCameraBtn" class="btn danger">Cancel</button>
+        <button id="captureBtn" class="btn primary circle-btn">📸</button>
+      </div>
+    </div>
+
+    <canvas id="canvas" hidden></canvas>
+    <img id="preview" alt="preview" class="hidden" />
+
+    <div id="status" class="status hidden"></div>
+    
+    <div id="result" class="result hidden">
+      <h2>Tap a number to open WhatsApp</h2>
+      <div id="numbers" class="numbers"></div>
+      
+      <div id="retakeContainer" class="hidden" style="margin-top: 15px; text-align: center;">
+        <button id="retakeBtn" class="btn secondary" style="width: 100%;">🔄 Scan Another Card</button>
+      </div>
+
+      <div class="raw-text">
+        <h3>Raw OCR Text (tap to toggle)</h3>
+        <pre id="rawText"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
